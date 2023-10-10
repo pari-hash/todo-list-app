@@ -5,7 +5,7 @@ const todoItemsModel = require('../models/todoItems');
 
 //create first route --add Todo Item to database
 //Use aync await when saving data in database 
-router.post('/api/item', async (req, res)=>{
+router.post('/home/api/item', async (req, res)=>{
   try{
     const newItem = new todoItemsModel({
       item: req.body.item
@@ -19,7 +19,7 @@ router.post('/api/item', async (req, res)=>{
 })
 
 //create second route -- get data from database
-router.get('/api/items', async (req, res)=>{
+router.get('/home/api/items', async (req, res)=>{
   try{
     const allTodoItems = await todoItemsModel.find({});
     res.status(200).json(allTodoItems)
@@ -30,7 +30,7 @@ router.get('/api/items', async (req, res)=>{
 
 
 //update item
-router.put('/api/item/:id', async (req, res)=>{
+router.put('/home/api/item/:id', async (req, res)=>{
   try{
     //find the item by its id and update it
     const updateItem = await todoItemsModel.findByIdAndUpdate(req.params.id, {$set: req.body});
@@ -42,7 +42,7 @@ router.put('/api/item/:id', async (req, res)=>{
 
 
 //Delete item from database
-router.delete('/api/item/:id', async (req, res)=>{
+router.delete('/home/api/item/:id', async (req, res)=>{
   try{
     //find the item by its id and delete it
     const deleteItem = await todoItemsModel.findByIdAndDelete(req.params.id);
